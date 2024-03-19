@@ -4,13 +4,6 @@ module "azurerm_resource_group" {
   environment = var.environment
 }
 
-module "azurerm_storage_account" {
-  source              = "../../../modules/storage-account"
-  resource_group_name = module.azurerm_resource_group.name
-  location            = var.location
-  environment         = var.environment
-}
-
 module "azurerm_key_vault" {
   source              = "../../../modules/key-vault"
   resource_group_name = module.azurerm_resource_group.name
@@ -34,8 +27,16 @@ module "azurerm_linux_virtual_machine" {
   subnet_id           = module.azurerm_virtual_network.subnet_id
   data_disks          = var.data_disks
   vm_count            = 3
+  depends_on          = [module.azurerm_key_vault]
 }
 
+
+# module "azurerm_storage_account" {
+#   source              = "../../../modules/storage-account"
+#   resource_group_name = module.azurerm_resource_group.name
+#   location            = var.location
+#   environment         = var.environment
+# }
 
 # module "azurerm_log_analytics_workspace" {
 #   source              = "../../../modules/log-analytics"
