@@ -23,6 +23,20 @@ module "azurerm_virtual_network" {
   location            = var.location
 }
 
+
+module "azurerm_linux_virtual_machine" {
+  source              = "../../../modules/compute/linux-vm"
+  resource_group_name = module.azurerm_resource_group.name
+  location            = var.location
+  vm_size             = "Standard_DS2_v2"
+  key_vault_name      = module.azurerm_key_vault.key_vault_id
+  secret_name         = "ssh-public"
+  subnet_id           = module.azurerm_virtual_network.subnet_id
+  data_disks          = var.data_disks
+  vm_count            = 3
+}
+
+
 # module "azurerm_log_analytics_workspace" {
 #   source              = "../../../modules/log-analytics"
 #   location            = var.location

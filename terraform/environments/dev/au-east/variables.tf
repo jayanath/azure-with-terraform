@@ -36,3 +36,19 @@ variable "environment" {
   type    = string
   default = "dev"
 }
+
+variable "data_disks" {
+  type = list(object({
+    disk_size_gb      = number
+    managed_disk_type = string
+  }))
+  default = [{
+    disk_size_gb      = 10
+    managed_disk_type = "Standard_LRS"
+    },
+    {
+      disk_size_gb      = 20
+      managed_disk_type = "Standard_LRS"
+
+  }]
+}
