@@ -17,6 +17,12 @@ module "azurerm_key_vault" {
   location            = var.location
 }
 
+module "azurerm_virtual_network" {
+  source              = "../../../modules/networking"
+  resource_group_name = module.azurerm_resource_group.name
+  location            = var.location
+}
+
 # module "azurerm_log_analytics_workspace" {
 #   source              = "../../../modules/log-analytics"
 #   location            = var.location
