@@ -37,7 +37,23 @@ variable "environment" {
   default = "dev"
 }
 
-variable "data_disks" {
+variable "windows_data_disks" {
+  type = list(object({
+    disk_size_gb      = number
+    managed_disk_type = string
+  }))
+  default = [{
+    disk_size_gb      = 15
+    managed_disk_type = "Standard_LRS"
+    },
+    {
+      disk_size_gb      = 30
+      managed_disk_type = "Standard_LRS"
+
+  }]
+}
+
+variable "linux_data_disks" {
   type = list(object({
     disk_size_gb      = number
     managed_disk_type = string
@@ -52,6 +68,7 @@ variable "data_disks" {
 
   }]
 }
+
 
 variable "secret_permissions" {
   type    = list(string)
