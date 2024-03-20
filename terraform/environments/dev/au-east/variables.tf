@@ -3,6 +3,10 @@ variable "location" {
   default = "australiaeast"
 }
 
+variable "source_image_id" {
+  type = string
+}
+
 variable "categories" {
   type = list(object({
     category = string

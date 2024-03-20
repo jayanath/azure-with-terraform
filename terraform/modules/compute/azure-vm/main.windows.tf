@@ -16,10 +16,11 @@ resource "azurerm_windows_virtual_machine" "main" {
     storage_account_type = var.storage_account_type
   }
 
-  source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
-    version   = "latest"
-  }
+  source_image_id = var.source_image_id
+  # source_image_reference {
+  #   publisher = "MicrosoftWindowsServer"
+  #   offer     = "WindowsServer"
+  #   sku       = "2016-Datacenter"
+  #   version   = "latest"
+  # }
 }

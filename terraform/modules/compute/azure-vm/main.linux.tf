@@ -17,11 +17,12 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = var.storage_account_type
   }
 
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
-  }
+  source_image_id = var.source_image_id
+  # source_image_reference {
+  #   publisher = "Canonical"
+  #   offer     = "UbuntuServer"
+  #   sku       = "18.04-LTS"
+  #   version   = "latest"
+  # }
 
 }

@@ -32,6 +32,10 @@ variable "admin_password" {
   type = string
 }
 
+variable "source_image_id" {
+  type = string
+}
+
 variable "vm_os_type" {
   type = string
   validation {

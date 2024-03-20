@@ -11,4 +11,5 @@ module "vm-generator" {
   storage_account_type = var.storage_account_type
   admin_username       = var.admin_username
   admin_password       = var.admin_password
+  source_image_id      = var.source_image_id
 }
