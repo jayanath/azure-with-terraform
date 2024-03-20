@@ -52,3 +52,27 @@ variable "data_disks" {
 
   }]
 }
+
+variable "secret_permissions" {
+  type    = list(string)
+  default = ["Get", "Backup", "Delete", "List", "Purge", "Recover", "Restore", "Set"]
+}
+
+variable "certificate_permissions" {
+  type = list(string)
+  default = [
+    "Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"
+  ]
+}
+
+variable "key_permissions" {
+  type = list(string)
+  default = [
+    "Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"
+  ]
+}
+
+variable "storage_permissions" {
+  type    = list(string)
+  default = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
+}

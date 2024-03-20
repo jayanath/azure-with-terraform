@@ -5,9 +5,13 @@ module "azurerm_resource_group" {
 }
 
 module "azurerm_key_vault" {
-  source              = "../../../modules/key-vault"
-  resource_group_name = module.azurerm_resource_group.name
-  location            = var.location
+  source                  = "../../../modules/key-vault"
+  resource_group_name     = module.azurerm_resource_group.name
+  location                = var.location
+  key_permissions         = var.key_permissions
+  secret_permissions      = var.secret_permissions
+  certificate_permissions = var.certificate_permissions
+  storage_permissions     = var.storage_permissions
 }
 
 module "azurerm_virtual_network" {
@@ -17,18 +21,37 @@ module "azurerm_virtual_network" {
 }
 
 
-module "azurerm_linux_virtual_machine" {
-  source              = "../../../modules/compute/linux-vm"
-  resource_group_name = module.azurerm_resource_group.name
-  location            = var.location
-  vm_size             = "Standard_DS2_v2"
-  key_vault_name      = module.azurerm_key_vault.key_vault_id
-  secret_name         = "ssh-public"
-  subnet_id           = module.azurerm_virtual_network.subnet_id
-  data_disks          = var.data_disks
-  vm_count            = 3
-  depends_on          = [module.azurerm_key_vault]
-}
+# module "linux_vms" {
+#   source              = "../../../modules/compute/vm-generator"
+#   resource_group_name = module.azurerm_resource_group.name
+#   location            = var.location
+#   vm_size             = "Standard_DS2_v2"
+#   key_vault_name      = "kv-ls0y"
+#   secret_name         = "ssh-public"
+#   subnet_id           = module.azurerm_virtual_network.subnet_id
+#   data_disks          = var.data_disks
+#   vm_count            = 3
+#   vm_name             = "linux-vm"
+#   depends_on          = [module.azurerm_virtual_network, module.azurerm_key_vault]
+#   vm_os_type          = "linux"
+# }
+
+# module "windows_vms" {
+#   source              = "../../../modules/compute/vm-generator"
+#   resource_group_name = module.azurerm_resource_group.name
+#   location            = var.location
+#   vm_size             = "Standard_DS2_v2"
+#   key_vault_name      = "kv-ls0y"
+#   secret_name         = "ssh-public"
+#   subnet_id           = module.azurerm_virtual_network.subnet_id
+#   data_disks          = var.data_disks
+#   vm_count            = 3
+#   vm_name             = "windows-vm"
+#   depends_on          = [module.azurerm_virtual_network, module.azurerm_key_vault]
+#   vm_os_type          = "windows"
+# }
+
+
 
 
 # module "azurerm_storage_account" {

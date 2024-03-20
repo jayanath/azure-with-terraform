@@ -22,13 +22,10 @@ resource "azurerm_key_vault_access_policy" "terraform_user" {
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = data.azurerm_client_config.current.object_id
 
-  key_permissions = [
-    "Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"
-  ]
-
-  secret_permissions = [
-    "Get", "Backup", "Delete", "List", "Purge", "Recover", "Restore", "Set"
-  ]
+  key_permissions         = var.key_permissions
+  secret_permissions      = var.secret_permissions
+  certificate_permissions = var.certificate_permissions
+  storage_permissions     = var.storage_permissions
 }
 
 resource "azurerm_key_vault_secret" "ssh_private_key" {

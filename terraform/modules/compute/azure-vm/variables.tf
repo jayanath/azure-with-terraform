@@ -27,6 +27,19 @@ variable "vm_count" {
   default = 1
 }
 
+variable "vm_name" {
+  type = string
+}
+
+variable "windows_admin_password" {
+  type    = string
+  default = "P@$$w0rd1234!"
+}
+
+variable "vm_os_type" {
+  type = string
+}
+
 variable "data_disks" {
   type = list(object({
     disk_size_gb      = number
