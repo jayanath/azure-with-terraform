@@ -26,14 +26,14 @@ module "linux_vms" {
   resource_group_name = module.azurerm_resource_group.name
   location            = var.location
   vm_size             = "Standard_DS2_v2"
-  key_vault_name      = "kv-ls0y"
-  secret_name         = "ssh-public"
   subnet_id           = module.azurerm_virtual_network.subnet_id
   data_disks          = var.linux_data_disks
   vm_count            = 2
   vm_name             = "linux-vm"
   depends_on          = [module.azurerm_virtual_network, module.azurerm_key_vault]
-  vm_os_type          = "linux"
+  vm_os_type          = "Linux"
+  admin_password      = "P@$$w0rd1234!"
+  admin_username      = "adminuser"
 }
 
 module "windows_vms" {
@@ -41,14 +41,15 @@ module "windows_vms" {
   resource_group_name = module.azurerm_resource_group.name
   location            = var.location
   vm_size             = "Standard_DS2_v2"
-  key_vault_name      = "kv-ls0y"
-  secret_name         = "ssh-public"
   subnet_id           = module.azurerm_virtual_network.subnet_id
   data_disks          = var.windows_data_disks
   vm_count            = 3
   vm_name             = "windows-vm"
   depends_on          = [module.azurerm_virtual_network, module.azurerm_key_vault]
-  vm_os_type          = "windows"
+  vm_os_type          = "Windows"
+  admin_password      = "P@$$w0rd1234!"
+  admin_username      = "adminuser"
+
 }
 
 

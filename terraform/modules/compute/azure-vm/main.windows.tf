@@ -4,16 +4,16 @@ resource "azurerm_windows_virtual_machine" "main" {
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
-  admin_username      = "adminuser"
+  admin_username      = var.admin_username
+  admin_password      = var.admin_password
 
-  admin_password = var.windows_admin_password
   network_interface_ids = [
     azurerm_network_interface.main.id,
   ]
 
   os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    caching              = var.os_disk_caching
+    storage_account_type = var.storage_account_type
   }
 
   source_image_reference {
