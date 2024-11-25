@@ -1,0 +1,22 @@
+rules:
+  - name: allow-rdp
+    priority: 110
+    direction: Inbound
+    access: Allow
+    protocol: Tcp
+    sourceAddressPrefix: '*'
+    sourcePortRange: '*'
+    destinationAddressPrefix: '*'
+    destinationPortRange: '3389'
+
+  - name: block-http 
+    priority: 210
+    direction: Inbound
+    access: Deny
+    protocol: Tcp
+    sourceAddressPrefix: '*'
+    sourcePortRange: '*'
+    destinationAddressPrefix: '*'
+    destinationPortRange: '80'
+
+    https://54e998c0-31cc-451d-8319-ddc20ce3c91a.webhook.ae.azure-automation.net/webhooks?token=lgn2jLj4v4Uxx61LnhzciHVegDgM1eQDfs7w%2bdxKWFs%3d
